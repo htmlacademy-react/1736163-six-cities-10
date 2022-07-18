@@ -1,6 +1,6 @@
 import MainPage from '../../pages/main-page/main-page';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import NotFound from '../../pages/page-not-found/page-not-found';
+import PageNotFound from '../../pages/page-not-found/page-not-found';
 import Favourites from '../../pages/favorites/favourites';
 import Login from '../../pages/login/Login';
 import Room from '../../pages/offer/offer';
@@ -31,15 +31,13 @@ function App({placesCount}: AppScreenProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path="offer/">
-          <Route
-            path={AppRoute.Room}
-            element={<Room/>}
-          />
-        </Route>
+        <Route
+          path={AppRoute.Room}
+          element={<Room/>}
+        />
         <Route
           path="*"
-          element={<NotFound/>}
+          element={<PageNotFound/>}
         />
       </Routes>
     </BrowserRouter>
@@ -47,10 +45,3 @@ function App({placesCount}: AppScreenProps): JSX.Element {
 }
 
 export default App;
-
-{/* <Route path="offer/">
-<Route
-  path={AppRoute.Room}
-  element={<Room/>}
-/>
-</Route> */}
