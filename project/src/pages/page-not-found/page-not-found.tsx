@@ -9,7 +9,7 @@ function PageNotFound(): JSX.Element {
         <Logo />
       </div>
       <h1>404. Page not found</h1>
-      <Link to={AppRoute.Root}>Вернуться на главную</Link>
+      <Link to={AppRoute.Root}>Go to home</Link>
     </section>
   );
 }
