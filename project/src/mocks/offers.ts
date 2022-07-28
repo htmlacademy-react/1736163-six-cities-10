@@ -1,11 +1,11 @@
-import {OfferType} from '../types/offer';
+import {Offer} from '../types/offer';
 
 const AVATAR = 'img/avatar-angelina.jpg';
 
-export const offers: OfferType[] = [
+export const offers: Offer[] = [
   {
-    id: 1,
-    offer: {
+    offerId: 1,
+    data: {
       pictures: ['img/room.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
       propertyName: 'Beautiful & luxurious studio at great MSE',
       description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of MSE. The building is green and from 18th century.',
@@ -25,8 +25,8 @@ export const offers: OfferType[] = [
     }
   },
   {
-    id: 2,
-    offer: {
+    offerId: 2,
+    data: {
       pictures: ['img/apartment-03.jpg', 'img/room.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
       propertyName: 'Beautiful & luxurious studio at great HHS',
       description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of HHS. The building is green and from 18th century.',
@@ -46,8 +46,8 @@ export const offers: OfferType[] = [
     }
   },
   {
-    id: 3,
-    offer: {
+    offerId: 3,
+    data: {
       pictures: ['img/studio-01.jpg', 'img/room.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/apartment-01.jpg'],
       propertyName: 'Beautiful & luxurious studio at great ASF',
       description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of ASF. The building is green and from 18th century.',
@@ -67,8 +67,8 @@ export const offers: OfferType[] = [
     }
   },
   {
-    id: 4,
-    offer: {
+    offerId: 4,
+    data: {
       pictures: ['img/apartment-02.jpg', 'img/room.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
       propertyName: 'Beautiful & luxurious studio at GASS',
       description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of GASS. The building is green and from 18th century.',

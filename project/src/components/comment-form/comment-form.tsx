@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ReviewType } from '../../types/review';
+import { Review } from '../../types/review';
 
 type CommentFormProps = {
-  onComment: (formData: ReviewType[]) => void;
+  onComment: (reviews: Review) => void;
 }
 
 function CommentForm(props: CommentFormProps): JSX.Element {
@@ -11,16 +11,18 @@ function CommentForm(props: CommentFormProps): JSX.Element {
   const {id} = useParams();
   const paramsId = Number(id);
 
-  const [formData, setFormData] = useState([{
-    id: paramsId,
-    review: [{
-      avatar: 'someAvatar',
-      name: 'someUser',
-      message: '',
-      rate: 0,
-      date: 'someDate',
-    }]
-  }]);
+  const [formData, setFormData] = useState({
+    avatar: 'someAvatar',
+    name: 'someUser',
+    message: '',
+    rate: 0,
+    date: 'someDate',
+  });
+
+  const reviews: Review = {
+    reviewId: paramsId,
+    review: [formData]
+  };
 
   const formChangeHandler = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
@@ -30,7 +32,7 @@ function CommentForm(props: CommentFormProps): JSX.Element {
   return (
     <form onSubmit={(evt: FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
-      onComment(formData);
+      onComment(reviews);
     }} className="reviews__form form" action="#" method="post"
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

@@ -1,12 +1,12 @@
 import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offers-list/offers-list';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 type MainPageProps = {
   placesCount: number;
-  offers: OfferType[];
+  offers: Offer[];
 }
 
 function MainPage({placesCount, offers}: MainPageProps): JSX.Element {
@@ -35,7 +35,7 @@ function MainPage({placesCount, offers}: MainPageProps): JSX.Element {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <Link to={'/'} className="header__nav-link">
+                    <Link to={AppRoute.Root} className="header__nav-link">
                       <span className="header__signout">Sign out</span>
                     </Link>
                   </li>

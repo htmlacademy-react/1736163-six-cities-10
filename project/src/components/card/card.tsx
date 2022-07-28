@@ -1,15 +1,15 @@
-import {OfferType} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import {useState, MouseEvent} from 'react';
 import {Link, Outlet} from 'react-router-dom';
 
 type CardProps = {
-  value: OfferType;
+  offers: Offer;
 }
 
-function Card({value}: CardProps): JSX.Element {
+function Card({offers}: CardProps): JSX.Element {
 
-  const {offer, id} = value;
-  const {premium, price, description, rate, type, pictures} = offer;
+  const {data, offerId} = offers;
+  const {premium, price, description, rate, type, pictures} = data;
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -19,7 +19,7 @@ function Card({value}: CardProps): JSX.Element {
           <span>Premium</span>
         </div> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`} key={id}>
+        <Link to={`offer/${offerId}`}>
           <img className="place-card__image" src={pictures[0]} width="260" height="200" alt="Place" />
         </Link>
         <Outlet />
@@ -30,7 +30,7 @@ function Card({value}: CardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button value={id} className={isActive ? 'place-card__bookmark-button--active button' : 'place-card__bookmark-button button'} type="button"
+          <button className={isActive ? 'place-card__bookmark-button--active button' : 'place-card__bookmark-button button'} type="button"
             onClick={({target}: MouseEvent<HTMLButtonElement>) => {
               setIsActive((current) => !current);
             }}
@@ -49,7 +49,7 @@ function Card({value}: CardProps): JSX.Element {
         </div>
         {description ?
           <h2 className="place-card__name">
-            <Link to={`offer/${id}`} key={id}>{description}</Link>
+            <Link to={`offer/${offerId}`} key={offerId}>{description}</Link>
           </h2> : null }
         <p className="place-card__type">{type.charAt(0).toUpperCase() + type.slice(1)}</p>
       </div>

@@ -1,5 +1,5 @@
 export type ReviewType = {
-  id: number;
+  reviewId: number;
   review: ReviewInfo[];
 }
 
@@ -11,3 +11,4 @@ export type ReviewInfo = {
   date: string;
 }
 
+export type Review = ReviewType;

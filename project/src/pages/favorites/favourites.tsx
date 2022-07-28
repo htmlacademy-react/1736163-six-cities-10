@@ -1,10 +1,10 @@
 import Logo from '../../components/logo/logo';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 
 type FavouritesProps = {
-  offers: OfferType[];
+  offers: Offer[];
 };
 
 function Favourites(props: FavouritesProps): JSX.Element {
@@ -34,7 +34,7 @@ function Favourites(props: FavouritesProps): JSX.Element {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <Link to={'/'} className="header__nav-link">
+                    <Link to={AppRoute.Root} className="header__nav-link">
                       <span className="header__signout">Sign out</span>
                     </Link>
                   </li>
@@ -59,20 +59,20 @@ function Favourites(props: FavouritesProps): JSX.Element {
                   </div>
                   <div className="favorites__places">
                     {offers.map((offer) => (
-                      <article className="favorites__card place-card" key={offer.id}>
-                        {offer.offer.premium ?
+                      <article className="favorites__card place-card" key={offer.offerId}>
+                        {offer.data.premium ?
                           <div className="place-card__mark">
                             <span>Premium</span>
                           </div> : null}
                         <div className="favorites__image-wrapper place-card__image-wrapper">
-                          <Link to={`/offer/${offer.id}`} key={offer.id}>
-                            <img className="place-card__image" src={offer.offer.pictures[0]} width="150" height="110" alt=""/>
+                          <Link to={`/offer/${offer.offerId}`}>
+                            <img className="place-card__image" src={offer.data.pictures[0]} width="150" height="110" alt=""/>
                           </Link>
                         </div>
                         <div className="favorites__card-info place-card__info">
                           <div className="place-card__price-wrapper">
                             <div className="place-card__price">
-                              <b className="place-card__price-value">&euro;{offer.offer.price}</b>
+                              <b className="place-card__price-value">&euro;{offer.data.price}</b>
                               <span className="place-card__price-text">&#47;&nbsp;night</span>
                             </div>
                             <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -84,14 +84,14 @@ function Favourites(props: FavouritesProps): JSX.Element {
                           </div>
                           <div className="place-card__rating rating">
                             <div className="place-card__stars rating__stars">
-                              <span style={{width: `${20 * offer.offer.rate}%`}}></span>
+                              <span style={{width: `${20 * offer.data.rate}%`}}></span>
                               <span className="visually-hidden">Rating</span>
                             </div>
                           </div>
                           <h2 className="place-card__name">
-                            <Link to={`offer/${offer.id}`} key={offer.id}>{offer.offer.description}</Link>
+                            <Link to={`offer/${offer.offerId}`}>{offer.data.description}</Link>
                           </h2>
-                          <p className="place-card__type">{offer.offer.type.charAt(0).toUpperCase() + offer.offer.type.slice(1)}</p>
+                          <p className="place-card__type">{offer.data.type.charAt(0).toUpperCase() + offer.data.type.slice(1)}</p>
                         </div>
                       </article>))}
                   </div>

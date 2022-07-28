@@ -1,5 +1,6 @@
 import Logo from '../../components/logo/logo';
 import {Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 function Login(): JSX.Element {
   return (
@@ -37,7 +38,7 @@ function Login(): JSX.Element {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link to={'/'} className="locations__item-link">
+                <Link to={AppRoute.Root} className="locations__item-link">
                   <span>Amsterdam</span>
                 </Link>
               </div>

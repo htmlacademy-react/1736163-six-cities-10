@@ -1,8 +1,8 @@
 import Card from '../card/card';
-import {OfferType} from '../../types/offer';
+import {Offer} from '../../types/offer';
 
 type OffersListProps = {
-  offers: OfferType[];
+  offers: Offer[];
 }
 
 function OffersList({offers}: OffersListProps): JSX.Element {
@@ -10,8 +10,8 @@ function OffersList({offers}: OffersListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
-        <Card key={offer.id}
-          value={offer}
+        <Card key={offer.offerId}
+          offers={offer}
         />
       )
       )}

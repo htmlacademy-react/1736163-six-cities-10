@@ -1,28 +1,23 @@
 import Logo from '../../components/logo/logo';
-import { ReviewType } from '../../types/review';
-import { OfferType } from '../../types/offer';
+import { Review } from '../../types/review';
+import { Offer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import CommentForm from '../../components/comment-form/comment-form';
 
 type RoomProps = {
-  offers: OfferType[];
-  reviews: ReviewType[];
+  offers: Offer[];
+  reviews: Review[];
 };
 
 function Room(props: RoomProps): JSX.Element {
 
   const {id} = useParams();
-  let offerId = 0;
-  offerId = Number(id) - 1;
-
   const {offers, reviews} = props;
-  const {...reviewsArr} = reviews;
-  const {...offersArr} = offers;
-  const {review} = reviewsArr[offerId];
-  const {offer} = offersArr[offerId];
-  const {bedsCount, description, insideList, personsCount, pictures, premium, price, propertyName, rate, type, host:{avatar, name, pro}} = offer;
+  const {data} = offers.find((offerObj) => offerObj.offerId === Number(id)) as Offer;
+  const {review} = reviews.find((reviewObj) => reviewObj.reviewId === Number(id)) as Review;
+  const {bedsCount, description, insideList, personsCount, pictures, premium, price, propertyName, rate, type, host:{avatar, name, pro}} = data;
 
   return (
     <>
@@ -47,7 +42,7 @@ function Room(props: RoomProps): JSX.Element {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <Link to={'/'} className="header__nav-link">
+                    <Link to={AppRoute.Root} className="header__nav-link">
                       <span className="header__signout">Sign out</span>
                     </Link>
                   </li>
@@ -112,7 +107,7 @@ function Room(props: RoomProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {insideList.map((items) => (
-                      <li className="property__inside-item" key={insideList.indexOf(items)}>
+                      <li className="property__inside-item" key={items}>
                         {items}
                       </li>
                     ))}

@@ -1,9 +1,9 @@
-import { ReviewType } from '../types/review';
+import { Review } from '../types/review';
 
 
-export const reviews: ReviewType[] = [
+export const reviews: Review[] = [
   {
-    id: 1,
+    reviewId: 1,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Maurice',
@@ -20,7 +20,7 @@ export const reviews: ReviewType[] = [
     }]
   },
   {
-    id: 2,
+    reviewId: 2,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Adam',
@@ -30,7 +30,7 @@ export const reviews: ReviewType[] = [
     }]
   },
   {
-    id: 3,
+    reviewId: 3,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Sam',
@@ -40,7 +40,7 @@ export const reviews: ReviewType[] = [
     }]
   },
   {
-    id: 4,
+    reviewId: 4,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Kim',
@@ -50,5 +50,3 @@ export const reviews: ReviewType[] = [
     }]
   }
 ];
-
-export {};

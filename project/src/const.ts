@@ -10,7 +10,3 @@ export enum AuthorizationStatus {
   NoAuth='NO_AUTH',
   Unknown='UNKNOWN'
 }
-
-export enum HousingVariants {
-  room = 'Room'
-}

@@ -1,6 +1,6 @@
 export type OfferType = {
-  id: number;
-  offer: OfferDescription;
+  offerId: number;
+  data: OfferDescription;
 }
 
 export type OfferDescription = {
@@ -23,13 +23,4 @@ export type HostInfo = {
   name: string;
 }
 
-export type ReviewType = {
-  id: number;
-  reviewInfo: ReviewInfo[];
-}
-
-export type ReviewInfo = {
-  avatar: string;
-  message: string;
-  name: string;
-}
+export type Offer = OfferType;
