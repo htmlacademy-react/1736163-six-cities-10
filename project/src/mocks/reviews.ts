@@ -3,7 +3,7 @@ import { Review } from '../types/review';
 
 export const reviews: Review[] = [
   {
-    reviewId: 1,
+    offerId: 1,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Maurice',
@@ -20,7 +20,7 @@ export const reviews: Review[] = [
     }]
   },
   {
-    reviewId: 2,
+    offerId: 2,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Adam',
@@ -30,7 +30,7 @@ export const reviews: Review[] = [
     }]
   },
   {
-    reviewId: 3,
+    offerId: 3,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Sam',
@@ -40,7 +40,7 @@ export const reviews: Review[] = [
     }]
   },
   {
-    reviewId: 4,
+    offerId: 4,
     review: [{
       avatar: 'img/avatar-max.jpg',
       name: 'Kim',

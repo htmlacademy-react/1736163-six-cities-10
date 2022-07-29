@@ -3,12 +3,12 @@ import {useState, MouseEvent} from 'react';
 import {Link, Outlet} from 'react-router-dom';
 
 type CardProps = {
-  offers: Offer;
+  offer: Offer;
 }
 
-function Card({offers}: CardProps): JSX.Element {
+function Card({offer}: CardProps): JSX.Element {
 
-  const {data, offerId} = offers;
+  const {data, offerId} = offer;
   const {premium, price, description, rate, type, pictures} = data;
   const [isActive, setIsActive] = useState(false);
 
@@ -49,7 +49,7 @@ function Card({offers}: CardProps): JSX.Element {
         </div>
         {description ?
           <h2 className="place-card__name">
-            <Link to={`offer/${offerId}`} key={offerId}>{description}</Link>
+            <Link to={`offer/${offerId}`}>{description}</Link>
           </h2> : null }
         <p className="place-card__type">{type.charAt(0).toUpperCase() + type.slice(1)}</p>
       </div>

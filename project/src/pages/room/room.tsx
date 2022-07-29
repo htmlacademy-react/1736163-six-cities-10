@@ -16,7 +16,7 @@ function Room(props: RoomProps): JSX.Element {
   const {id} = useParams();
   const {offers, reviews} = props;
   const {data} = offers.find((offerObj) => offerObj.offerId === Number(id)) as Offer;
-  const {review} = reviews.find((reviewObj) => reviewObj.reviewId === Number(id)) as Review;
+  const {review} = reviews.find((reviewObj) => reviewObj.offerId === Number(id)) as Review;
   const {bedsCount, description, insideList, personsCount, pictures, premium, price, propertyName, rate, type, host:{avatar, name, pro}} = data;
 
   return (
@@ -106,11 +106,14 @@ function Room(props: RoomProps): JSX.Element {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {insideList.map((items) => (
-                      <li className="property__inside-item" key={items}>
-                        {items}
-                      </li>
-                    ))}
+                    {insideList.map((item, index) => {
+                      const keyValue = `${index}-${item}`;
+                      return (
+                        <li className="property__inside-item" key={keyValue}>
+                          {item}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
                 <div className="property__host">

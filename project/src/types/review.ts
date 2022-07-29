@@ -1,5 +1,5 @@
 export type ReviewType = {
-  reviewId: number;
+  offerId: number;
   review: ReviewInfo[];
 }
 

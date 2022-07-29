@@ -11,7 +11,7 @@ function OffersList({offers}: OffersListProps): JSX.Element {
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <Card key={offer.offerId}
-          offers={offer}
+          offer={offer}
         />
       )
       )}

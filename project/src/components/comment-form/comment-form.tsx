@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Review } from '../../types/review';
 
 type CommentFormProps = {
-  onComment: (reviews: Review) => void;
+  onComment: (review: Review) => void;
 }
 
 function CommentForm(props: CommentFormProps): JSX.Element {
@@ -19,8 +19,8 @@ function CommentForm(props: CommentFormProps): JSX.Element {
     date: 'someDate',
   });
 
-  const reviews: Review = {
-    reviewId: paramsId,
+  const review: Review = {
+    offerId: paramsId,
     review: [formData]
   };
 
@@ -32,7 +32,7 @@ function CommentForm(props: CommentFormProps): JSX.Element {
   return (
     <form onSubmit={(evt: FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
-      onComment(reviews);
+      onComment(review);
     }} className="reviews__form form" action="#" method="post"
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
