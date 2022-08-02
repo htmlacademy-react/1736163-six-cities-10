@@ -15,9 +15,9 @@ function Room(props: RoomProps): JSX.Element {
 
   const {id} = useParams();
   const {offers, reviews} = props;
-  const {data} = offers.find((offerObj) => offerObj.offerId === Number(id)) as Offer;
-  const {review} = reviews.find((reviewObj) => reviewObj.offerId === Number(id)) as Review;
-  const {bedsCount, description, insideList, personsCount, pictures, premium, price, propertyName, rate, type, host:{avatar, name, pro}} = data;
+  const offer = offers.find((offerObj) => offerObj.offerId === Number(id)) as Offer;
+  const review = reviews.filter((reviewObj) => reviewObj.offerId === Number(id));
+  const {bedrooms, description, goods, maxAdults, images, isPremium, price, title, rating, type, host:{avatarUrl, name, isPro}} = offer;
 
   return (
     <>
@@ -56,9 +56,9 @@ function Room(props: RoomProps): JSX.Element {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {pictures.map((picture) => (
-                  <div className="property__image-wrapper" key={picture}>
-                    <img className="property__image" src={picture} alt=""/>
+                {images.map((image) => (
+                  <div className="property__image-wrapper" key={image}>
+                    <img className="property__image" src={image} alt=""/>
                   </div>
                 )
                 )}
@@ -66,13 +66,13 @@ function Room(props: RoomProps): JSX.Element {
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                {premium ?
+                {isPremium &&
                   <div className="property__mark">
                     <span>Premium</span>
-                  </div> : null}
+                  </div>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    {propertyName}
+                    {title}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -83,20 +83,20 @@ function Room(props: RoomProps): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${20 * rate}%`}}></span>
+                    <span style={{width: `${20 * rating}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  {<span className="property__rating-value rating__value">{rate}</span>}
+                  {<span className="property__rating-value rating__value">{rating}</span>}
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {bedsCount} Bedrooms
+                    {bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {personsCount} adults
+                    Max {maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">
@@ -106,7 +106,7 @@ function Room(props: RoomProps): JSX.Element {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {insideList.map((item, index) => {
+                    {goods.map((item, index) => {
                       const keyValue = `${index}-${item}`;
                       return (
                         <li className="property__inside-item" key={keyValue}>
@@ -120,12 +120,12 @@ function Room(props: RoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar"/>
+                      <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
                       {name}
                     </span>
-                    {pro ? <span className="property__user-status">Pro</span> : null}
+                    {isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -136,30 +136,32 @@ function Room(props: RoomProps): JSX.Element {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{review.length}</span></h2>
                   <ul className="reviews__list">
-                    {review.map((comment) => (
-                      <li className="reviews__item" key={comment.name}>
-                        <div className="reviews__user user">
-                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                            <img className="reviews__avatar user__avatar" src={comment.avatar} width="54" height="54" alt="Reviews avatar"/>
-                          </div>
-                          <span className="reviews__user-name">
-                            {comment.name}
-                          </span>
-                        </div>
-                        <div className="reviews__info">
-                          <div className="reviews__rating rating">
-                            <div className="reviews__stars rating__stars">
-                              <span style={{width: `${20 * comment.rate}%`}}></span>
-                              <span className="visually-hidden">Rating</span>
+                    {review.map((reviewObj, index) => {
+                      const keyValue = `${index}-${reviewObj}`;
+                      return (
+                        <li className="reviews__item" key={keyValue}>
+                          <div className="reviews__user user">
+                            <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                              <img className="reviews__avatar user__avatar" src={reviewObj.user.avatarUrl} width="54" height="54" alt="Reviews avatar"/>
                             </div>
+                            <span className="reviews__user-name">
+                              {reviewObj.user.name}
+                            </span>
                           </div>
-                          <p className="reviews__text">
-                            {comment.message}
-                          </p>
-                          <time className="reviews__time" dateTime="2019-04-24">{comment.date}</time>
-                        </div>
-                      </li>
-                    ))}
+                          <div className="reviews__info">
+                            <div className="reviews__rating rating">
+                              <div className="reviews__stars rating__stars">
+                                <span style={{width: `${20 * reviewObj.rating}%`}}></span>
+                                <span className="visually-hidden">Rating</span>
+                              </div>
+                            </div>
+                            <p className="reviews__text">
+                              {reviewObj.comment}
+                            </p>
+                            <time className="reviews__time" dateTime="2019-04-24">{reviewObj.date}</time>
+                          </div>
+                        </li>
+                      );})}
                   </ul>
                   <CommentForm
                     onComment={() => {
